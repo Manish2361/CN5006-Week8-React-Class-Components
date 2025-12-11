@@ -1,0 +1,45 @@
+import './App.css'
+import React from 'react'
+import like7 from './like7.png'
+import Love from './Love.png'
+import sad from './sad.png'
+
+class FacebookEmojiCounter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { number: 0 };
+    this.increment = this.increment.bind(this);
+
+    // select image based on type
+    if (this.props.type === "Love") {
+      this.pic = Love;
+    } else if (this.props.type === "Like") {
+      this.pic = like7;
+    } else if (this.props.type === "sad") {
+      this.pic = sad;
+    } else {
+      this.pic = null;
+    }
+  }
+
+  increment() {
+    this.setState((prevState) => {
+      return { number: prevState.number + 1 };
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h5>It is {this.state.number} {this.props.type}.</h5>
+
+        <button onClick={this.increment}>
+          <img src={this.pic} alt="" />
+          <b>{this.state.number}</b>
+        </button>
+      </div>
+    );
+  }
+}
+
+export default FacebookEmojiCounter;
